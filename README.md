@@ -5,7 +5,7 @@
 Using npm:
 ```shell
 $ npm i -g npm
-$ npm i j-tools
+$ npm i @jimmy-jin/j-test
 ```
 
 ## Why j-tools?

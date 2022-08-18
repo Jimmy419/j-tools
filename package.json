@@ -1,16 +1,16 @@
 {
-  "name": "j-tools",
+  "name": "@jimmy-jin/j-test",
   "version": "1.0.0",
   "description": "frequently used tools for frontend developer",
-  "main": "build/index.js",
-  "exports": {
-    "import": "./build/index.es.js",
-    "require": "./build/index.cjs.js",
-    "default": "./build/index.es.js"
-  },
-  "module": "build/index.js",
+  "main": "build/index.cjs.js",
+  "module": "build/index.es.js",
   "types": "build/index.d.ts",
   "unpkg": "build/index.umd.js",
+  "private": false,
+  "files": [
+    "build/",
+    "README.md"
+  ],
   "scripts": {
     "clean": "rimraf ./build",
     "test": "jest",
