@@ -1,5 +1,5 @@
 {
-  "name": "@jimmy-jin/j-test",
+  "name": "@jimmy-jin/j-tools",
   "version": "1.0.0",
   "description": "frequently used tools for frontend developer",
   "main": "build/index.cjs.js",
