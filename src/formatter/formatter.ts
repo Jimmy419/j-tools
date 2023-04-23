@@ -42,7 +42,9 @@ export const currencyFormater = (num: number, symbo: string): string => {
  */
 export const dateFormater = (dateIpt: string | Date, fmt: string): string => {
   let ret;
-  const date = new Date(dateIpt);
+  const date = new Date(
+    typeof dateIpt === "string" ? dateIpt.replace(/-/g, "/") : dateIpt
+  );
   const opt: { [key: string]: string } = {
     "Y+": date.getFullYear().toString(), // 年
     "m+": (date.getMonth() + 1).toString(), // 月
