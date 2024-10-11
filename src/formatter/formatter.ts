@@ -5,7 +5,7 @@
  * @returns
  */
 export const currencyFormater = (num: number, symbo: string): string => {
-  let str = num.toString();
+  str = num.toString();
   let newStr = "";
   let count = 0;
 
