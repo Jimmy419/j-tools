@@ -10,11 +10,13 @@ export function accAdd(arg1: number, arg2: number): number {
     r1 = arg1.toString().split(".")[1].length;
   } catch (e) {
     r1 = 0;
+    throw new Error(e);
   }
   try {
     r2 = arg2.toString().split(".")[1].length;
   } catch (e) {
     r2 = 0;
+    throw new Error(e);
   }
   const m = Math.pow(10, Math.max(r1, r2));
   return (arg1 * m + arg2 * m) / m;
@@ -32,11 +34,13 @@ export function accMinus(arg1: number, arg2: number) {
     r1 = arg1.toString().split(".")[1].length;
   } catch (e) {
     r1 = 0;
+    throw new Error(e);
   }
   try {
     r2 = arg2.toString().split(".")[1].length;
   } catch (e) {
     r2 = 0;
+    throw new Error(e);
   }
   const m = Math.pow(10, Math.max(r1, r2));
   const n = r1 >= r2 ? r1 : r2;
@@ -55,11 +59,13 @@ export function accMultiply(number1: number, number2: number): number {
     baseNum += number1.toString().split(".")[1].length;
   } catch (e) {
     // console.log(e);
+    throw new Error(e);
   }
   try {
     baseNum += number2.toString().split(".")[1].length;
   } catch (e) {
     // console.log(e);
+    throw new Error(e);
   }
   return (
     (Number(number1.toString().replace(".", "")) *
@@ -81,11 +87,13 @@ export function accDivide(num1: number, num2: number) {
     baseNum1 = num1.toString().split(".")[1].length;
   } catch (e) {
     baseNum1 = 0;
+    throw new Error(e);
   }
   try {
     baseNum2 = num2.toString().split(".")[1].length;
   } catch (e) {
     baseNum2 = 0;
+    throw new Error(e);
   }
   const baseNum3 = Number(num1.toString().replace(".", ""));
   const baseNum4 = Number(num2.toString().replace(".", ""));

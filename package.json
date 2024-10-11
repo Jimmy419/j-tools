@@ -21,7 +21,7 @@
     "build-umd": "rollup --config rollup.umd.config.js",
     "build-cjs": "rollup --config rollup.cjs.config.js",
     "build": "npm run clean && npm run build-es && npm run build-umd && npm run build-cjs",
-    "prepush": "npm test && npm lint"
+    "prepush": "npm test && npm run lint"
   },
   "author": "jimmy jin",
   "license": "MIT",
