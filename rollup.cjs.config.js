@@ -1,12 +1,12 @@
 import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle";
 import baseConfig from "./rollup.config";
 
-const overrides = {
-  compilerOptions: {
-    declaration: true,
-  },
-  exclude: ["src/**/*.test.ts"],
-};
+// const overrides = {
+//   compilerOptions: {
+//     declaration: true,
+//   },
+//   exclude: ["src/**/*.test.ts"],
+// };
 
 const config = {
   ...baseConfig,
