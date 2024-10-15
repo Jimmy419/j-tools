@@ -10,6 +10,7 @@ function accAdd(arg1, arg2) {
         r1 = arg1.toString().split(".")[1].length;
     }
     catch (e) {
+        console.error(e);
         r1 = 0;
     }
     try {
@@ -17,6 +18,7 @@ function accAdd(arg1, arg2) {
     }
     catch (e) {
         r2 = 0;
+        console.error(e);
     }
     var m = Math.pow(10, Math.max(r1, r2));
     return (arg1 * m + arg2 * m) / m;
@@ -34,12 +36,14 @@ function accMinus(arg1, arg2) {
     }
     catch (e) {
         r1 = 0;
+        console.error(e);
     }
     try {
         r2 = arg2.toString().split(".")[1].length;
     }
     catch (e) {
         r2 = 0;
+        console.error(e);
     }
     var m = Math.pow(10, Math.max(r1, r2));
     var n = r1 >= r2 ? r1 : r2;
@@ -58,12 +62,14 @@ function accMultiply(number1, number2) {
     }
     catch (e) {
         // console.log(e);
+        console.error(e);
     }
     try {
         baseNum += number2.toString().split(".")[1].length;
     }
     catch (e) {
         // console.log(e);
+        console.error(e);
     }
     return ((Number(number1.toString().replace(".", "")) *
         Number(number2.toString().replace(".", ""))) /
@@ -82,12 +88,14 @@ function accDivide(num1, num2) {
     }
     catch (e) {
         baseNum1 = 0;
+        console.error(e);
     }
     try {
         baseNum2 = num2.toString().split(".")[1].length;
     }
     catch (e) {
         baseNum2 = 0;
+        console.error(e);
     }
     var baseNum3 = Number(num1.toString().replace(".", ""));
     var baseNum4 = Number(num2.toString().replace(".", ""));
@@ -138,7 +146,7 @@ var currencyFormater = function (num, symbo) {
  */
 var dateFormater = function (dateIpt, fmt) {
     var ret;
-    var date = new Date(dateIpt);
+    var date = new Date(typeof dateIpt === "string" ? dateIpt.replace(/-/g, "/") : dateIpt);
     var opt = {
         "Y+": date.getFullYear().toString(),
         "m+": (date.getMonth() + 1).toString(),
@@ -177,6 +185,47 @@ var nameFormater = function (name) {
         return name.substring(0, 1) + "*" + name.substring(2, name.length);
     }
     return null;
+};
+/**
+ * Adds a space after every four characters in the given string.
+ *
+ * @param str - The input string to format.
+ * @returns The formatted string with spaces added after every four characters.
+ *
+ * @remarks
+ * - If the string length is less than or equal to 4, the original string is returned.
+ * - Spaces are added using the `reduce` method to traverse the string.
+ * - A space is added after every four characters, except for the last group of characters.
+ *
+ * @example
+ * ```typescript
+ * addSpacesAfterEveryFourChars("1234567890"); // "1234 5678 90"
+ * addSpacesAfterEveryFourChars("abcd"); // "abcd"
+ * addSpacesAfterEveryFourChars("abc"); // "abc"
+ * ```
+ */
+var addSpacesAfterEveryFourChars = function (str) {
+    // 如果字符串长度小于4，则无需添加空格，直接返回原字符串
+    if (str.length <= 4) {
+        return str;
+    }
+    // 使用reduce方法遍历字符串，并添加空格
+    // 使用数组索引作为第二个参数，以跟踪当前位置
+    return str
+        .split("")
+        .reduce(function (acc, char, index) {
+        // 在每四个字符后（不包括最后一个分组）添加一个空格
+        if ((index + 1) % 4 === 0 && index !== str.length - 1) {
+            acc.push(char, " ");
+        }
+        else {
+            acc.push(char);
+        }
+        // 返回累加器数组
+        return acc;
+        // 将累加器数组转换回字符串
+    }, [])
+        .join("");
 };
 
 /**
@@ -245,4 +294,41 @@ var idNoZhValidator = function (idCard) {
     return idCard.match(REGEX.idCard) ? true : false;
 };
 
-export { REGEX, accAdd, accDivide, accMinus, accMultiply, currencyFormater, dateFormater, emailValidator, getBirthdayFromIdCard, getGenderFromIdCard, idNoZhValidator, mobileFormater, mobileValidator, nameFormater };
+/* eslint-disable */
+function deepClone(obj) {
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+    var rstObj;
+    if (obj instanceof Array) {
+        rstObj = [];
+    }
+    else {
+        rstObj = {};
+    }
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            rstObj[key] = deepClone(obj[key]);
+        }
+    }
+    return rstObj;
+}
+// export function deepClone<T>(obj: T): T {
+//   if (typeof obj !== "object" || obj === null) {
+//     return obj;
+//   }
+//   let rstObj: any;
+//   if (Array.isArray(obj)) {
+//     rstObj = [];
+//   } else {
+//     rstObj = {} as { [key: string]: any };
+//   }
+//   for (let key in obj) {
+//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+//       rstObj[key] = deepClone(obj[key]);
+//     }
+//   }
+//   return rstObj as T;
+// }
+
+export { REGEX, accAdd, accDivide, accMinus, accMultiply, addSpacesAfterEveryFourChars, currencyFormater, dateFormater, deepClone, emailValidator, getBirthdayFromIdCard, getGenderFromIdCard, idNoZhValidator, mobileFormater, mobileValidator, nameFormater };

@@ -1,6 +1,6 @@
 {
   "name": "@jimmy-jin/js-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "frequently used tools for frontend developer",
   "main": "build/index.cjs.js",
   "module": "build/index.es.js",
@@ -21,6 +21,7 @@
     "build-umd": "rollup --config rollup.umd.config.js",
     "build-cjs": "rollup --config rollup.cjs.config.js",
     "build": "npm run clean && npm run build-es && npm run build-umd && npm run build-cjs",
+    "publish": "npm run build && npm publish",
     "prepush": "npm test && npm run lint"
   },
   "author": "jimmy jin",

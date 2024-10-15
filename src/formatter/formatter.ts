@@ -90,3 +90,45 @@ export const nameFormater = (name: string): string | null => {
   }
   return null;
 };
+
+/**
+ * Adds a space after every four characters in the given string.
+ *
+ * @param str - The input string to format.
+ * @returns The formatted string with spaces added after every four characters.
+ *
+ * @remarks
+ * - If the string length is less than or equal to 4, the original string is returned.
+ * - Spaces are added using the `reduce` method to traverse the string.
+ * - A space is added after every four characters, except for the last group of characters.
+ *
+ * @example
+ * ```typescript
+ * addSpacesAfterEveryFourChars("1234567890"); // "1234 5678 90"
+ * addSpacesAfterEveryFourChars("abcd"); // "abcd"
+ * addSpacesAfterEveryFourChars("abc"); // "abc"
+ * ```
+ */
+export const addSpacesAfterEveryFourChars = (str: string): string => {
+  // 如果字符串长度小于4，则无需添加空格，直接返回原字符串
+  if (str.length <= 4) {
+    return str;
+  }
+
+  // 使用reduce方法遍历字符串，并添加空格
+  // 使用数组索引作为第二个参数，以跟踪当前位置
+  return str
+    .split("")
+    .reduce((acc: string[], char: string, index) => {
+      // 在每四个字符后（不包括最后一个分组）添加一个空格
+      if ((index + 1) % 4 === 0 && index !== str.length - 1) {
+        acc.push(char, " ");
+      } else {
+        acc.push(char);
+      }
+      // 返回累加器数组
+      return acc;
+      // 将累加器数组转换回字符串
+    }, [])
+    .join("");
+};
