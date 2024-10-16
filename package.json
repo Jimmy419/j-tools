@@ -1,6 +1,6 @@
 {
   "name": "@jimmy-jin/js-tools",
-  "version": "1.0.2",
+  "version": "1.0.2-beta",
   "description": "frequently used tools for frontend developer",
   "main": "build/index.cjs.js",
   "module": "build/index.es.js",
