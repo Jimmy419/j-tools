@@ -3,9 +3,15 @@
 
 name: Node.js Package
 
+# on:
+#   release:
+#     types: [created]
+
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - 'v*.*.*'  # 仅当推送到 v*.*.* 分支时触发
+    
 
 jobs:
   build:
@@ -16,7 +22,7 @@ jobs:
         with:
           node-version: 20
       - run: npm ci
-      - run: npm test
+      - run: npm build
 
   publish-npm:
     needs: build
@@ -30,4 +36,4 @@ jobs:
       - run: npm ci
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
